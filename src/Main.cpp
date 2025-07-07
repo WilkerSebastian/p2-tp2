@@ -5,7 +5,7 @@ main()
 {
   using namespace tcii::cg;
 
-  auto filename = "../../meshes/f-16.obj";
+  auto filename = "meshes/f-16.obj";
   auto mesh = readOBJ(filename);
 
   if (!mesh)
