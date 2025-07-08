@@ -143,16 +143,39 @@ main()
 
   if (!mesh)
     printf("Could not read '%s'\n", filename);
+  else
+    mesh->print(filename);
 
   auto attributes = pipeLine(*mesh);
 
-  for (size_t i = 0; i < 10; ++i) {
+  std::cout << std::string(30, '=') << '\n' <<
+  "VERTEX ATTRIBUTES" << '\n' <<
+  std::string(30, '=') << '\n';
 
-    std::cout << attributes->triangleAttribute<0>(i) << 
-    ' ' << attributes->triangleAttribute<1>(i) << 
-    ' ' << attributes->triangleAttribute<2>(i) << '\n';
+  for (unsigned i = 0; i < 10; ++i) {
+    
+    std::cout << std::string(20, '-') << '\n' <<
+    "Vertex Attribute " << i << '\n' << 
+    "Color: " << attributes->vertexAttribute<0>(i) << '\n' <<
+    "Weight: " << attributes->vertexAttribute<1>(i) << '\n';
 
   }
+
+  std::cout << std::string(30, '=') << '\n' <<
+  "TRIANGLE ATTRIBUTES" << '\n' <<
+  std::string(30, '=') << '\n';
+
+  for (unsigned i = 0; i < 10; ++i) {
+    
+    std::cout << std::string(20, '-') << '\n' <<
+    "Triangle Attribute " << i << '\n' << 
+    "Color: " << attributes->triangleAttribute<0>(i) << '\n' <<
+    "Brightness: " << attributes->triangleAttribute<1>(i) << '\n' <<
+    "Shadow: " << attributes->triangleAttribute<2>(i) << '\n';
+
+  }
+
+  std::cout << std::string(20, '-') << '\n';
 
   puts("Press any key to exit...");
   (void)getchar();
