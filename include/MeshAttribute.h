@@ -63,11 +63,15 @@ namespace tcii::cg {
             void setTriangleAttributes(MeshIndex i, Fields&&... fields) { 
                 _ta.set(i, std::forward<Fields>(fields)...); 
             }
-            
+
+            auto& mesh() const {
+                return *_mesh;
+            }
+
             static ObjectPtr<MeshAttribute> New(const TriangleMesh& mesh) { 
                 return new MeshAttribute(mesh); 
             }
-        
+
         private:
             
             ObjectPtr<TriangleMesh> _mesh;
@@ -103,6 +107,10 @@ namespace tcii::cg {
                 _ta.set(i, std::forward<Fields>(fields)...); 
             }
 
+            auto& mesh() const {
+                return *_mesh;
+            }
+
             static ObjectPtr<MeshAttribute> New(const TriangleMesh& mesh) { 
                 return new MeshAttribute(mesh); 
             }
@@ -135,8 +143,13 @@ namespace tcii::cg {
                 _va.template get<I>(i) = std::forward<Field>(field); 
             }
 
-            template <typename... Fields> void setVertexAttributes(MeshIndex i, Fields&&... fields) { 
+            template <typename... Fields> 
+            void setVertexAttributes(MeshIndex i, Fields&&... fields) { 
                 _va.set(i, std::forward<Fields>(fields)...); 
+            }
+
+            auto& mesh() const {
+                return *_mesh;
             }
 
             static ObjectPtr<MeshAttribute> New(const TriangleMesh& mesh) { 
@@ -160,6 +173,10 @@ namespace tcii::cg {
     class MeshAttribute<VA, TA> : public SharedObject {
 
         public:
+
+            auto& mesh() const {
+                return *_mesh;
+            }
 
             static ObjectPtr<MeshAttribute> New(const TriangleMesh& mesh) {
                 return new MeshAttribute(mesh);
