@@ -1,3 +1,9 @@
+/*
+* Autor: Wilker Sebastian Afonso Pereira
+* GitHub: https://github.com/WilkerSebastian/p2-tp2
+*
+* Prova 2 de Tópicos em Computação 2
+*/
 #include "MeshAttribute.h"
 #include "TriangleMesh.h"
 
